@@ -51,6 +51,7 @@ div.OutputArea {
 }
 #quickscript-output {
     font-size: 2em;
+    line-height: 1.6em;
 }
 details > p, details > details {
     font-size: small;
