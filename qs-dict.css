@@ -1,0 +1,58 @@
+/*
+Copyright 2018 akovaski
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+@font-face {
+    font-family: AME;
+    src: url('abbots-morton-experiment/ame.woff');
+}
+html, * {
+    font-family: Helvetica, Corbel, AME, sans-serif;
+    line-height: 1.3em;
+}
+[lang='en-Qaas'] {
+    font-family: AME, Helvetica, Corbel, sans-serif;
+}
+body {
+    background: #3a3a8a;
+}
+#pageContent {
+    max-width: 25rem;
+    margin: 0 auto;
+    background: lightblue;
+    padding: 7px;
+}
+h1 {
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+#progress {
+    width: 80px;
+}
+#word-input {
+    width:15ch;
+}
+div.OutputArea {
+    min-height: 1.3em;
+    border: 1px solid;
+    padding: 2px;
+}
+#quickscript-output {
+    font-size: 2em;
+}
+details > p, details > details {
+    font-size: small;
+    margin: 4px 0 4px 2ch;
+}
