@@ -1,6 +1,8 @@
 # QS-Dict
 Software to approximately transform words of Orthodox English Spelling into Quickscript.
 
+[Live Version](https://akovaski.github.io/QS-Dict/qs-dict.html)
+
 This is not a true dictionary, but rather a phonetic transformation from english
 words to Quickscript. Some standardized spellings may be transformed incorrectly.
 
