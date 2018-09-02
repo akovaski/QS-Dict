@@ -38,22 +38,32 @@ h1 {
     text-align: center;
     margin: 0 0 10px 0;
 }
-#progress {
-    width: 80px;
-}
 #word-input {
     width:15ch;
 }
+
 div.OutputArea {
     min-height: 1.3em;
     border: 1px solid;
     padding: 2px;
 }
-#quickscript-output {
+div.qsOut {
     font-size: 2em;
     line-height: 1.6em;
 }
+#manual-output {
+    background: lightgreen;
+    display: none;
+}
+
 details > p, details > details {
     font-size: small;
     margin: 4px 0 4px 2ch;
+}
+details > details > summary {
+    font-weight: bold;
+}
+
+progress {
+    width: 80px;
 }

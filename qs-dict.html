@@ -21,7 +21,7 @@ limitations under the License.
     <title>QS-Dict</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="qs-dict.css" />
-    <script src="qs-dict.js"></script>
+    <script src="qs-dict.js?v=2"></script>
 </head>
 <body>
     <div id="pageContent">
@@ -37,7 +37,8 @@ limitations under the License.
         <div id="phenomes-output" class="OutputArea"></div>
 
         <label>Quickscript:</label>
-        <div id="quickscript-output" class="OutputArea" lang='en-Qaas'></div>
+        <div id="manual-output" class="OutputArea qsOut" lang='en-Qaas'></div>
+        <div id="phenomeQS-output" class="OutputArea qsOut" lang='en-Qaas'></div>
         
         <br/>
         <br/>
@@ -47,19 +48,23 @@ limitations under the License.
                 <p>
                     This is not a true dictionary, but rather a phonetic transformation from english
                     words to Quickscript. Some standardized spellings may be transformed incorrectly.
+                    Submit any suggestions as an issue on this project's
+                    <a href="https://github.com/akovaski/QS-Dict">github page</a>.
                 </p>
                 <p>
-                    The character 34-Ox &#59000; will not appear in any of the transformations. This is
-                    because this page uses the Carnegie Mellon Pronouncing Dictionary to lookup the
-                    pronunciation of words, and the <a href="https://en.wikipedia.org/wiki/ARPABET">ARPABET</a>
-                    does not have a phoneme that maps to Ox.
+                    The "Phenomes" section displayes the phenomes obtained from the
+                    Carnegie Mellon Pronouncing Dictionary. For more information on these phenomes, see
+                    <a href="https://en.wikipedia.org/wiki/ARPABET">the ARPABET wikipedia article</a>.
                 </p>
             </details>
             <details>
                 <summary>Source:</summary>
-                <p>You can view this page's source <a href="https://github.com/akovaski/QS-Dict">here</a>.</p>
+                <p>
+                    You can view this page's source on this project's
+                    <a href="https://github.com/akovaski/QS-Dict">github page</a>.
+                </p>
                 <details>
-                    <summary>The page also uses the following software:</summary>
+                    <summary>Open Source Projects Used:</summary>
                     <details>
                         <summary>The Carnegie Mellon Pronouncing Dictionary</summary>
                         <p><a href="http://www.speech.cs.cmu.edu/cgi-bin/cmudict">http://www.speech.cs.cmu.edu/cgi-bin/cmudict</a></p>
@@ -76,8 +81,12 @@ limitations under the License.
         </div>
         <br/>
         <div>
-            <span id="status">Loading Dictionary.</span>
-            <progress id="progress" max="1" value="0"></progress>
+            <span id="dict-status">Loading Dictionary.</span>
+            <progress id="dict-progress" max="1" value="0"></progress>
+        </div>
+        <div>
+            <span id="transform-status">Loading Transform.</span>
+            <progress id="transform-progress" max="1" value="0"></progress>
         </div>
     </div>
 </body>
