@@ -19,7 +19,7 @@ limitations under the License.
     src: url('abbots-morton-experiment/ame.woff');
 }
 html, * {
-    font-family: Helvetica, Corbel, AME, sans-serif;
+    font-family: Helvetica, Corbel, sans-serif, AME;
     line-height: 1.3em;
 }
 [lang='en-Qaas'] {
