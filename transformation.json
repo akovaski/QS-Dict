@@ -25,7 +25,7 @@
         ["(?!^)\\b((AH0)|(IH0)) D$", "day"],
         ["(?!^)\\b((AH0)|(IH0)) S$", "see"],
         ["(?!^)\\b((AH0)|(IH0)) Z$", "zoo"],
-        ["(?!(^)|(IY\\d))\\b(IH0 NG)\\b", "ing", "g"],
+        ["\\b((?!IY\\d)[a-zA-Z0-9]+) (IH0 NG)\\b", "$1 ing", "g"],
         ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (AH0 L)$", "$1 low"],
         ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (AH0 L D)$", "$1 low day"],
         ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (AH0 L Z)$", "$1 low zoo"],
