@@ -257,7 +257,8 @@ function submitWord() {
     let QSOutElem = document.getElementById("quickscript-output");
     let notFoundElem = document.getElementById("word-not-found-display");
 
-    let results = getQSTranscripts(inputElem.value);
+    let word = inputElem.value;
+    let results = getQSTranscripts(word);
     let phenomes = results[0];
     let manualTranscripts = results[1];
     let qsTranscripts = results[2];
