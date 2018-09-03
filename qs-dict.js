@@ -13,8 +13,9 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-const dictURL = "cmudict/cmudict.dict?v=2";
+const dictURL = "cmudict/cmudict.txt";
 const transformURL = "transformation.json?v=4";
+const JSONtestTransformURL = "test/test-transform.json";
 
 let CMUdict = new Map();
 let wordReplace = new Map();
@@ -314,7 +315,6 @@ function addQSOut(elem, qsStrings, styleClass) {
     }
 }
 
-let JSONtestTransformURL = "test/test-transform.json";
 // not called anywhere, just used for testing
 function testTransform() {
     
@@ -364,7 +364,8 @@ function testTransform() {
             }
         }
     });
-    testReq.open("GET",JSONtestTransformURL, true);
+    // request tests, bypass the cache
+    testReq.open("GET",JSONtestTransformURL + "?" + Date.now(), true);
     testReq.responseType = "json";
     testReq.send();
 }
