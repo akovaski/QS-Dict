@@ -188,7 +188,7 @@ let qsm = { // Quickscript map
 };
 
 function convertNamesToQS(str) {
-    return str.split(" ").map(name => qsm[name] || "?").join("");
+    return str.split(" ").map(name => qsm[name] || name).join("");
 }
 
 function saveTransform(transJSON) {
@@ -240,6 +240,17 @@ function submitWord() {
     let qsTranscripts = [];
 
     for (let phenomeStr of phenomes) {
+        let qsStr = transformPhenome(phenomeStr, word);
+        
+        if (!manualTranscripts.includes(qsStr) && !qsTranscripts.includes(qsStr)) {
+            qsTranscripts.push(qsStr);
+        }
+    }
+
+    addQSOut(QSOutElem, qsTranscripts, "resultNormal");
+}
+
+function transformPhenome(phenomeStr, word) {
         // Transform the phenomes in order.
         for (let transform of phenomeReplace) {
             let wordConditionRe = transform[2];
@@ -249,13 +260,7 @@ function submitWord() {
             phenomeStr = phenomeStr.replace(transform[0], transform[1]);
         }
         phenomeStr = phenomeStr.replace(/ /g,"").trim();
-        
-        if (!manualTranscripts.includes(phenomeStr) && !qsTranscripts.includes(phenomeStr)) {
-            qsTranscripts.push(phenomeStr);
-        }
-    }
-
-    addQSOut(QSOutElem, qsTranscripts, "resultNormal");
+        return phenomeStr;
 }
 
 function addQSOut(elem, qsStrings, styleClass) {

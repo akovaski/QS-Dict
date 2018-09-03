@@ -26,6 +26,7 @@
         ["(?!^)\\b((AH0)|(IH0)) S$", "see"],
         ["(?!^)\\b((AH0)|(IH0)) D$", "day"],
         ["(?!(^)|(IY\\d))\\b(IH0 NG)\\b", "ing"],
+        ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (AH0 L)$", "$1 low"],
         ["(?!^)\\b(AH0 L IY0)$", "it low it", "", "ily$"],
         ["(?!^)\\b(AH0 T IY0)$", "it tea it"],
         ["(?!^)\\b(IY0)$", "it"],
