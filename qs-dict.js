@@ -215,6 +215,14 @@ function convertNamesToQS(str) {
     return str.split(" ").map(name => qsm[name] || name).join("");
 }
 
+function convertQSToNames(str) {
+    let reverseLookup = {};
+    for (let name in qsm) {
+        reverseLookup[qsm[name]] = name;
+    }
+    return str.split("").map(qsChar => reverseLookup[qsChar] || qsChar).join(" ");
+}
+
 function saveTransform(transJSON) {
     // Load the direct English -> Quickscript translations.
     for (let replace of transJSON["wordReplace"]) {
@@ -224,18 +232,22 @@ function saveTransform(transJSON) {
 
     // Load the regex transformations.
     for (let replace of transJSON["regexReplace"]) {
-        let re = new RegExp(replace[0], replace[2]);
-        let wordConditionRe;
-        if (replace[3]) {
-            wordConditionRe = new RegExp(replace[3]);
-        }
-        phenomeReplace.push([re, convertNamesToQS(replace[1]), wordConditionRe]);
-    }
+        let reStr = replace[0];
+        let substituteStr = replace[1];
+        let flag = replace[2];
+        let wordContitionStr = replace[3];
 
-    // Load the plain phenome transformations.
-    for (let replace of transJSON["plainReplace"]) {
-        let re = new RegExp("\\b" + replace[0] + "\\b", "g");
-        phenomeReplace.push([re, convertNamesToQS(replace[1])]);
+        if (flag === "plain") {
+            reStr = "\\b" + reStr + "\\b";
+            flag = "g";
+        }
+
+        let re = new RegExp(reStr, flag);
+        let wordConditionRe;
+        if (wordContitionStr) {
+            wordConditionRe = new RegExp(wordContitionStr);
+        }
+        phenomeReplace.push([re, convertNamesToQS(substituteStr), wordConditionRe]);
     }
 }
 
@@ -245,21 +257,26 @@ function submitWord() {
     let QSOutElem = document.getElementById("quickscript-output");
     let notFoundElem = document.getElementById("word-not-found-display");
 
-    let word = inputElem.value.toLowerCase();
-    let manualTranscripts = wordReplace.get(word) || [];
-    let phenomes = CMUdict.get(word) || [];
-
-    if (phenomes.length === 0 && manualTranscripts.length === 0) {
+    let results = getQSTranscripts(inputElem.value);
+    let phenomes = results[0];
+    let manualTranscripts = results[1];
+    let qsTranscripts = results[2];
+    if (manualTranscripts.length === 0 && qsTranscripts.length === 0) {
         notFoundElem.innerText = "<Word not found: \"" + word + "\">";
     } else {
         notFoundElem.innerText = "";
     }
 
     phenomElem.innerText = phenomes.join("\n");
-    
     QSOutElem.innerHTML = "";
     addQSOut(QSOutElem, manualTranscripts, "resultPreferred");
+    addQSOut(QSOutElem, qsTranscripts, "resultNormal");
+}
 
+function getQSTranscripts(wordInput) {
+    let word = wordInput.toLowerCase();
+    let manualTranscripts = wordReplace.get(word) || [];
+    let phenomes = CMUdict.get(word) || [];
 
     let qsTranscripts = [];
 
@@ -270,8 +287,7 @@ function submitWord() {
             qsTranscripts.push(qsStr);
         }
     }
-
-    addQSOut(QSOutElem, qsTranscripts, "resultNormal");
+    return [phenomes, manualTranscripts, qsTranscripts];
 }
 
 function transformPhenome(phenomeStr, word) {
@@ -295,4 +311,59 @@ function addQSOut(elem, qsStrings, styleClass) {
 
         elem.appendChild(div);
     }
+}
+
+let JSONtestTransformURL = "test/test-transform.json";
+// not called anywhere, just used for testing
+function testTransform() {
+    
+    // Request the transformation json file
+    let testReq = new XMLHttpRequest();
+    testReq.addEventListener("readystatechange", function() {
+        if (testReq.readyState === 4) {
+            let loaded = false;
+            if (testReq.status === 200) {
+                // Construct the CMUdict dictionary.
+                try {
+                    let tests = testReq.response;
+                    let numFails = 0;
+                    for (let test of tests) {
+                        // the test file should have words and verified transformations in the format of:
+                        // [
+                        //    ["word", ["way utter roe day", ...]] ...
+                        // ]
+                        let word = test[0];
+                        let spellings = test[1].map(convertNamesToQS);
+
+                        let results = getQSTranscripts(word);
+                        let transcripts = results[1].concat(results[2]);
+                        
+                        let same = spellings.length === transcripts.length &&
+                                   spellings.every((val)=>transcripts.includes(val));
+                        if (!same) {
+                            console.log("Mismatch: " + word);
+                            console.log("Expected: " + JSON.stringify(spellings.map(convertQSToNames)));
+                            console.log("Actual:   " + JSON.stringify(transcripts.map(convertQSToNames)));
+
+                            numFails += 1;
+                        }
+                    }
+
+                    if (numFails > 0) {
+                        console.log(numFails + " tests failed.");
+                    } else {
+                        console.log("All " + tests.length + " tests ran successfully.");
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+
+            } else {
+                console.log("Could not load test file");
+            }
+        }
+    });
+    testReq.open("GET",JSONtestTransformURL, true);
+    testReq.responseType = "json";
+    testReq.send();
 }
