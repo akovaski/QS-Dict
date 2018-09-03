@@ -74,6 +74,9 @@ details > details > summary {
 #phoneme-details {
     font-size: small;
 }
+#word-not-found-display {
+    font-weight: bold;
+}
 
 progress {
     width: 80px;

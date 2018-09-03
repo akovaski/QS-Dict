@@ -25,6 +25,12 @@ window.addEventListener("load",pageLoad);
 
 function pageLoad() {
 
+    let hash = window.location.hash.substr(1);
+    if (hash) {
+        let inputElem = document.getElementById("word-input");
+        inputElem.value = hash;
+    }
+
     // Request the CMU dictionary
     let dictReq = new XMLHttpRequest();
     dictReq.addEventListener("progress", generateProgressHandler("dict-progress"));
@@ -96,17 +102,35 @@ function retrieveDone(reqID) {
         let buttonElem = document.getElementById("word-button");
 
         // Setup the HTML elements to respond to input.
+        function submitWordAndAddHistory() {
+            history.pushState("", "", "#" + inputElem.value);
+            submitWord();
+        }
         inputElem.addEventListener("keydown",function(event){
             let e = event || window.event;
             if(e.keyCode == 13){
-                submitWord();
+                submitWordAndAddHistory();
             }
         });
         buttonElem.addEventListener("click", function(){
-            submitWord();
+            submitWordAndAddHistory();
         });
         inputElem.disabled=false;
         buttonElem.disabled=false;
+
+        if (inputElem.value) {
+            submitWord(); // The input value may be specified by navigating to the page via a   
+        }
+
+        // execute whenever the url hash is updated (going back/forward through history)
+        // or when pushstate is called
+        window.addEventListener("popstate", function(evt) {
+            let hash = document.location.hash.substr(1);
+            if (hash) {
+                inputElem.value = hash;
+                submitWord();
+            }
+        })
     }
 }
 
@@ -241,7 +265,7 @@ function submitWord() {
 
     for (let phenomeStr of phenomes) {
         let qsStr = transformPhenome(phenomeStr, word);
-        
+
         if (!manualTranscripts.includes(qsStr) && !qsTranscripts.includes(qsStr)) {
             qsTranscripts.push(qsStr);
         }
