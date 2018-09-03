@@ -15,7 +15,8 @@
         ["the", ["they"]],
         ["to", ["tea"]],
         ["we", ["way"]],
-        ["what", ["what"]],
+        ["with", ["way it"]],
+        ["what", ["why"]],
         ["you", ["ye"]],
         ["your", ["ye roe"]],
         ["yours", ["ye roe zoo"]]
@@ -30,6 +31,7 @@
         ["AA0 R",   "ah roe"],
         ["AA1 R",   "ah roe"],
         ["AA2 R",   "ah roe"],
+        ["HH W",    "why"],
         ["AA",   "ah"],
         ["AA0",  "ox"],
         ["AA1",  "ox"],
