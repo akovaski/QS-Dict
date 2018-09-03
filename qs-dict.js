@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 const dictURL = "cmudict/cmudict.dict?v=2";
-const transformURL = "transformation.json?v=2";
+const transformURL = "transformation.json?v=3";
 
 let CMUdict = new Map();
 let wordReplace = new Map();
@@ -106,6 +106,7 @@ function retrieveDone(reqID) {
             submitWord();
         });
         inputElem.disabled=false;
+        buttonElem.disabled=false;
     }
 }
 
@@ -213,30 +214,24 @@ function saveTransform(transJSON) {
 function submitWord() {
     let inputElem = document.getElementById("word-input");
     let phenomElem = document.getElementById("phenomes-output");
-    let phenomQSElem = document.getElementById("phenomeQS-output");
-    let manualElem = document.getElementById("manual-output");
+    let QSOutElem = document.getElementById("quickscript-output");
+    let notFoundElem = document.getElementById("word-not-found-display");
 
     let word = inputElem.value.toLowerCase();
+    let manualTranscripts = wordReplace.get(word) || [];
+    let phenomes = CMUdict.get(word) || [];
 
-    let manualWords = wordReplace.get(word);
-
-    if (manualWords) {
-        manualElem.innerText = manualWords.join("\n");
-        manualElem.style.display = "inherit";
+    if (phenomes.length === 0 && manualTranscripts.length === 0) {
+        notFoundElem.innerText = "<Word not found: \"" + word + "\">";
     } else {
-        manualElem.innerText = "";
-        manualElem.style.display = "none";
-    }
-
-    let phenomes = CMUdict.get(word);
-
-    if (!phenomes && !manualWords) {
-        phenomElem.innerText = "<Word not found>";
-        phenomQSElem.innerText = "";
-        return;
+        notFoundElem.innerText = "";
     }
 
     phenomElem.innerText = phenomes.join("\n");
+    
+    QSOutElem.innerHTML = "";
+    addQSOut(QSOutElem, manualTranscripts, "resultPreferred");
+
 
     let qsTranscripts = [];
 
@@ -247,8 +242,20 @@ function submitWord() {
         }
         phenomeStr = phenomeStr.replace(/ /g,"").trim();
         
-        qsTranscripts.push(phenomeStr);
+        if (!manualTranscripts.includes(phenomeStr) && !qsTranscripts.includes(phenomeStr)) {
+            qsTranscripts.push(phenomeStr);
+        }
     }
 
-    phenomQSElem.innerText = qsTranscripts.join("\n");
+    addQSOut(QSOutElem, qsTranscripts, "resultNormal");
+}
+
+function addQSOut(elem, qsStrings, styleClass) {
+    for (let str of qsStrings) {
+        let div = document.createElement("div");
+        div.innerText = str;
+        div.className = styleClass;
+
+        elem.appendChild(div);
+    }
 }

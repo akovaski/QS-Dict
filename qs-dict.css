@@ -30,6 +30,7 @@ body {
 }
 #pageContent {
     max-width: 25rem;
+    min-width: 18rem;
     margin: 0 auto;
     background: lightblue;
     padding: 7px;
@@ -42,26 +43,36 @@ h1 {
     width:15ch;
 }
 
-div.OutputArea {
-    min-height: 1.3em;
-    border: 1px solid;
-    padding: 2px;
+.OutputArea {
+    min-height: 2.2em;
+    padding: 2px 0 2px 0;
+    background: gray;
 }
-div.qsOut {
+.qsOut {
     font-size: 2em;
     line-height: 1.6em;
 }
-#manual-output {
+.qsOut > div {
+    padding: 0.1em 0.3ch 0.3em 0.3ch;
+    margin: 7px;
+    border: 1px solid;
+}
+.resultPreferred {
     background: lightgreen;
-    display: none;
+}
+.resultNormal {
+    background: #65adc9;
 }
 
-details > p, details > details {
+details > p, details > div, details > details {
     font-size: small;
     margin: 4px 0 4px 2ch;
 }
 details > details > summary {
     font-weight: bold;
+}
+#phoneme-details {
+    font-size: small;
 }
 
 progress {
