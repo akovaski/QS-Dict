@@ -9,7 +9,7 @@ words to Quickscript. Some standardized spellings may be transformed incorrectly
 # How it works
 
 ## Manually transforming words
-If the word matches any of the words in the wordReplace array in `transformation.js`,
+If the word matches any of the words in the `wordReplace` array in `transformation.js`,
 the spellings provided are displayed to the user. The page then continues to attempt
 to tranform the word phonetically.
 

@@ -22,17 +22,20 @@
         ["yours", ["ye roe zoo"]]
     ],
     "regexReplace":[
-        ["(?!^)\\b((AH0)|(IH0)) Z$", "", "zoo"],
-        ["(?!^)\\b((AH0)|(IH0)) S$", "", "see"],
-        ["(?!^)\\b((AH0)|(IH0)) D$", "", "day"],
-        ["(?!^)\\b(AA\\d)$", "", "ah"]
+        ["(?!^)\\b((AH0)|(IH0)) Z$", "zoo"],
+        ["(?!^)\\b((AH0)|(IH0)) S$", "see"],
+        ["(?!^)\\b((AH0)|(IH0)) D$", "day"],
+        ["(?!(^)|(IY\\d))\\b(IH0 NG)\\b", "ing"],
+        ["(?!^)\\b(AH0 L IY0)$", "it low it", "", "ily$"],
+        ["(?!^)\\b(AH0 T IY0)$", "it tea it"],
+        ["(?!^)\\b(IY0)$", "it"],
+        ["(?!^)\\b(AA\\d)$", "ah"]
     ],
     "plainReplace": [
-        ["AA0 R",   "ah roe"],
-        ["AA1 R",   "ah roe"],
-        ["AA2 R",   "ah roe"],
+        ["AA\\d R",   "ah roe"],
+        ["EH\\d R",   "eight roe"],
         ["HH W",    "why"],
-        ["AA",   "ah"],
+        ["AA",   "ox"],
         ["AA0",  "ox"],
         ["AA1",  "ox"],
         ["AA2",  "ox"],

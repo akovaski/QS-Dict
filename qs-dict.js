@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 const dictURL = "cmudict/cmudict.dict?v=2";
-const transformURL = "transformation.json?v=3";
+const transformURL = "transformation.json?v=4";
 
 let CMUdict = new Map();
 let wordReplace = new Map();
@@ -200,8 +200,12 @@ function saveTransform(transJSON) {
 
     // Load the regex transformations.
     for (let replace of transJSON["regexReplace"]) {
-        let re = new RegExp(replace[0], replace[1]);
-        phenomeReplace.push([re, convertNamesToQS(replace[2])]);
+        let re = new RegExp(replace[0], replace[2]);
+        let wordConditionRe;
+        if (replace[3]) {
+            wordConditionRe = new RegExp(replace[3]);
+        }
+        phenomeReplace.push([re, convertNamesToQS(replace[1]), wordConditionRe]);
     }
 
     // Load the plain phenome transformations.
@@ -238,6 +242,10 @@ function submitWord() {
     for (let phenomeStr of phenomes) {
         // Transform the phenomes in order.
         for (let transform of phenomeReplace) {
+            let wordConditionRe = transform[2];
+            if (wordConditionRe && !word.match(wordConditionRe)) {
+                continue;
+            }
             phenomeStr = phenomeStr.replace(transform[0], transform[1]);
         }
         phenomeStr = phenomeStr.replace(/ /g,"").trim();
