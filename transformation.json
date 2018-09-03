@@ -35,6 +35,9 @@
         ["(?!^)\\b(AA\\d)$", "ah"]
     ],
     "plainReplace": [
+        ["JH AH0 N", "jay no"],
+        ["SH AH0 N", "she no"],
+        ["ZH AH0 N", "j'ai no"],
         ["AA\\d R",   "ah roe"],
         ["EH\\d R",   "eight roe"],
         ["HH W",    "why"],
