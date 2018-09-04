@@ -43,6 +43,7 @@
         ["(?!^)\\b(M AH0 N)$", "M et no", "", "men$"],
         ["(?!^)\\b(IY0)$", "it"],
         ["(?!^)\\b(AA\\d)$", "ah"],
+        ["(T) (AH0 L)", "$1 L", "plain"],
         ["\\b((?!IY\\d)[a-zA-Z0-9]+) (IH0 NG)\\b", "$1 ing", "g"],
         ["JH AH0 N", "JH N", "plain"],
         ["SH AH0 N", "SH N", "plain"],
