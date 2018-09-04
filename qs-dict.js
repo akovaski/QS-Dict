@@ -227,7 +227,7 @@ function convertQSToNames(str) {
 function saveTransform(transJSON) {
     // Load the direct English -> Quickscript translations.
     for (let replace of transJSON["wordReplace"]) {
-        let qsWords = replace[1].map(convertNamesToQS);
+        let qsWords = replace[1];
         wordReplace.set(replace[0], qsWords);
     }
 
@@ -248,7 +248,7 @@ function saveTransform(transJSON) {
         if (wordContitionStr) {
             wordConditionRe = new RegExp(wordContitionStr);
         }
-        phenomeReplace.push([re, convertNamesToQS(substituteStr), wordConditionRe]);
+        phenomeReplace.push([re, substituteStr, wordConditionRe]);
     }
 }
 
@@ -277,7 +277,7 @@ function submitWord() {
 
 function getQSTranscripts(wordInput) {
     let word = wordInput.toLowerCase();
-    let manualTranscripts = wordReplace.get(word) || [];
+    let manualTranscripts = (wordReplace.get(word) || []).map(convertNamesToQS);
     let phenomes = CMUdict.get(word) || [];
 
     let qsTranscripts = [];
@@ -301,7 +301,7 @@ function transformPhenome(phenomeStr, word) {
             }
             phenomeStr = phenomeStr.replace(transform[0], transform[1]);
         }
-        phenomeStr = phenomeStr.replace(/ /g,"").trim();
+        phenomeStr = convertNamesToQS(phenomeStr);
         return phenomeStr;
 }
 
