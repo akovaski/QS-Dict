@@ -7,7 +7,7 @@
     ["as", ["at", "at zoo", "et zoo"]],
     ["at", ["at tea"]],
     ["be", ["bay", "bay eat", "bay it"]],
-    ["because", ["bay it key awe zoo", "bay it key utter zoo", "bay it key ox zoo", "bay it key zoo"]],
+    ["because", ["bay key zoo", "bay it key awe zoo", "bay it key utter zoo", "bay it key ox zoo"]],
     ["but", ["bay tea", "bay utter tea"]],
     ["by", ["bay i"]],
     ["can", ["key", "key at no", "key utter no"]],
@@ -128,7 +128,7 @@
     ["being", ["bay ing", "bay eat it ing"]],
     ["beings", ["bay eat it ing zoo"]],
     ["undoing", ["utter no day ooze ing"]],
-    ["willingness", ["way it low ing no see"]],
+    ["willingness", ["way it low ing no et see"]],
     ["canning", ["key at no ing"]],
     ["carrying", ["key at roe it it ing", "key eight roe it it ing"]],
     ["tribal", ["tea roe i bay low"]],
@@ -205,5 +205,14 @@
     ["seamen", ["see eat may et no"]],
     ["overland", ["owe vie utter roe low at no day", "owe vie utter roe low no day"]],
     ["cement", ["see utter may et no tea", "see it may et no tea"]],
-    ["unmanned", ["utter no may at no day"]]
+    ["unmanned", ["utter no may at no day"]],
+    ["circus", ["see utter roe key utter see"]],
+    ["discus", ["day it see key utter see"]],
+    ["chorus", ["key awe roe utter see"]],
+    ["porous", ["pea awe roe utter see"]],
+    ["various", ["vie eight roe it utter see"]],
+    ["serious", ["see it roe it utter see"]],
+    ["precious", ["pea roe et she utter see"]],
+    ["conscious", ["key ox no she utter see"]],
+    ["contentious", ["key utter no tea et no she utter see"]]
 ]
