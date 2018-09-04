@@ -196,5 +196,14 @@
     ["present", ["pea roe et zoo utter no tea", "pea roe it zoo et no tea", "pea utter roe zoo et no tea"]],
     ["distant", ["day it see tea utter no tea"]],
     ["presence", ["pea roe et zoo utter no see"]],
-    ["distance", ["day it see tea utter no see"]]
+    ["distance", ["day it see tea utter no see"]],
+    ["england", ["it ing gay low no day"]],
+    ["highland", ["he i low no day"]],
+    ["settlement", ["see et tea low may no tea"]],
+    ["payment", ["pea eight may no tea"]],
+    ["seaman", ["see eat may no"]],
+    ["seamen", ["see eat may et no"]],
+    ["overland", ["owe vie utter roe low at no day", "owe vie utter roe low no day"]],
+    ["cement", ["see utter may et no tea", "see it may et no tea"]],
+    ["unmanned", ["utter no may at no day"]]
 ]
