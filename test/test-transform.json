@@ -155,7 +155,7 @@
     ["cavalier", ["key at vie utter low it roe", "key at vie utter low eat roe"]],
     ["rifleman", ["roe i fee utter low may no"]],
     ["coupling", ["key utter pea low ing"]],
-    ["burial", ["bay eight roe eat utter low"]],
+    ["burial", ["bay eight roe it utter low"]],
     ["visual", ["vie it j'ai utter way utter low"]],
     ["loyal", ["low oy utter low"]],
     ["usually", ["ye ooze j'ai utter low it", "ye ooze j'ai utter way utter low it"]],
@@ -192,5 +192,9 @@
     ["fasten", ["fee at see utter no"]],
     ["prison", ["pea roe it zoo utter no"]],
     ["ashen", ["at she no"]],
-    ["pigeon", ["pea it jay no", "pea it jay it no"]]
+    ["pigeon", ["pea it jay no", "pea it jay it no"]],
+    ["present", ["pea roe et zoo utter no tea", "pea roe it zoo et no tea", "pea utter roe zoo et no tea"]],
+    ["distant", ["day it see tea utter no tea"]],
+    ["presence", ["pea roe et zoo utter no see"]],
+    ["distance", ["day it see tea utter no see"]]
 ]
