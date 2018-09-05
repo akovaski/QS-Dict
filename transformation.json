@@ -44,6 +44,8 @@
         ["(?!^)\\b(M AH0 N T)$", "M no tea"],
         ["(?!^)\\b(M AH0 N)$", "M no", "", "man$"],
         ["(?!^)\\b(M AH0 N)$", "M et no", "", "men$"],
+        ["(?!^)\\b(AH0 S)$", "et see", "", "ess$"],
+        ["(?!^)\\b(AH0 S T)$", "et see tea", "", "est$"],
         ["(?!^)\\b(IY0)$", "it"],
         ["(?!^)\\b(AA\\d)$", "ah"],
         ["(T) (AH0 L)", "$1 L", "plain"],
