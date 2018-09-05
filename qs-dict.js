@@ -34,7 +34,8 @@ function pageLoad() {
 
     // Request the CMU dictionary
     let dictReq = new XMLHttpRequest();
-    dictReq.addEventListener("progress", generateProgressHandler("dict-progress"));
+    let dictProgressElem = document.getElementById("dict-progress");
+    dictReq.addEventListener("progress", generateProgressHandler(dictProgressElem));
     dictReq.addEventListener("readystatechange", function() {
         if (dictReq.readyState === 4) {
             let loaded = false;
@@ -43,6 +44,7 @@ function pageLoad() {
                     // Construct the CMUdict dictionary.
                     saveDictionary(dictReq.responseText);
                     retrieveDone("dict");
+                    dictProgressElem.value = 1;
                     loaded = true;
                 } catch(e) {
                     console.log(e);
@@ -58,7 +60,6 @@ function pageLoad() {
             }
         }
     });
-
     dictReq.open("GET",dictURL, true);
     dictReq.responseType = "text";
     dictReq.send();
@@ -66,7 +67,8 @@ function pageLoad() {
 
     // Request the transformation json file
     let transReq = new XMLHttpRequest();
-    transReq.addEventListener("progress", generateProgressHandler("transform-progress"));
+    let transProgressElem = document.getElementById("transform-progress");
+    transReq.addEventListener("progress", generateProgressHandler(transProgressElem));
     transReq.addEventListener("readystatechange", function() {
         if (transReq.readyState === 4) {
             let loaded = false;
@@ -75,6 +77,7 @@ function pageLoad() {
                 try {
                     saveTransform(transReq.response);
                     retrieveDone("trans");
+                    transProgressElem.value = 1;
                     loaded = true;
                 } catch(e) {
                     console.log(e);
@@ -82,11 +85,11 @@ function pageLoad() {
 
             }
 
-            let dictStatusElem = document.getElementById("transform-status");
+            let transStatusElem = document.getElementById("transform-status");
             if (loaded) {
-                dictStatusElem.innerText = "Transform Loaded.";
+                transStatusElem.innerText = "Transform Loaded.";
             } else {
-                dictStatusElem.innerText = "Transform failed to load";
+                transStatusElem.innerText = "Transform failed to load";
             }
         }
     });
@@ -135,13 +138,14 @@ function retrieveDone(reqID) {
     }
 }
 
-function generateProgressHandler(elemID) {
-    let progressElem = document.getElementById(elemID);
-
+function generateProgressHandler(progressElem) {
     return function(evt) {
         if (evt.lengthComputable) {
             let percentComplete = (evt.loaded / evt.total);
             progressElem.value = percentComplete;
+        } else {
+            let remaining = 1 - progressElem.value;
+            progressElem.value += remaining/4;
         }
     };
 }
