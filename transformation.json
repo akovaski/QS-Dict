@@ -52,6 +52,7 @@
         ["\\b((?!IY\\d)[a-zA-Z0-9]+) (IH0 NG)\\b", "$1 ing", "g"],
         ["IY0 ER0", "it utter R", "plain"],
         ["(IH1|IY1) R", "eat utter R", "plain"],
+        ["IY0 AH0", "it utter", "plain"],
         ["JH AH0 N", "JH N", "plain"],
         ["SH AH0 N", "SH N", "plain"],
         ["ZH AH0 N", "ZH N", "plain"],
