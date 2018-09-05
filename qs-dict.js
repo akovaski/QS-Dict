@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 const dictURL = "cmudict/cmudict.txt";
-const transformURL = "transformation.json?v=5";
+const transformURL = "transformation.json?v=6";
 const JSONtestTransformURL = "test/test-transform.json";
 
 let CMUdict = new Map();
