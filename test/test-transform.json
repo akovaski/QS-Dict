@@ -6,7 +6,7 @@
     ["and", ["no", "at no day", "utter no day"]],
     ["as", ["at", "at zoo", "et zoo"]],
     ["at", ["at tea"]],
-    ["be", ["bay", "bay eat", "bay it"]],
+    ["be", ["bay", "bay eat"]],
     ["because", ["bay key zoo", "bay it key awe zoo", "bay it key utter zoo", "bay it key ox zoo"]],
     ["but", ["bay tea", "bay utter tea"]],
     ["by", ["bay i"]],
@@ -68,7 +68,7 @@
     ["tell", ["tea et low"]],
     ["than", ["they at no", "they utter no"]],
     ["that", ["they at tea", "they utter tea"]],
-    ["the", ["they", "they utter", "they it"]],
+    ["the", ["they", "they utter", "they eat"]],
     ["their", ["they eight roe"]],
     ["them", ["they et may", "they utter may"]],
     ["then", ["they et no"]],
@@ -258,5 +258,12 @@
     ["onion", ["utter no ye utter no"]],
     ["minion", ["may it no ye utter no"]],
     ["pillion", ["pea it low ye utter no"]],
-    ["million", ["may it low ye utter no"]]
+    ["million", ["may it low ye utter no"]],
+    ["ruthlessly", ["roe ooze thaw low et see low it"]],
+    ["feline", ["fee eat low i no"]],
+    ["felines", ["fee eat low i no zoo"]],
+    ["firman", ["fee utter roe may no"]],
+    ["firmans", ["fee utter roe may no zoo"]],
+    ["german", ["jay utter roe may no"]],
+    ["germans", ["jay utter roe may no zoo"]]
 ]

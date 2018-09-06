@@ -303,7 +303,11 @@ function transformPhenome(phenomeStr, word) {
             if (wordConditionRe && !word.match(wordConditionRe)) {
                 continue;
             }
-            phenomeStr = phenomeStr.replace(transform[0], transform[1]);
+            let updatedStr = phenomeStr.replace(transform[0], transform[1]);
+            if (wordConditionRe && phenomeStr !== updatedStr) {
+                word = word.replace(wordConditionRe, "");
+            }
+            phenomeStr = updatedStr;
         }
         phenomeStr = convertNamesToQS(phenomeStr);
         return phenomeStr;
