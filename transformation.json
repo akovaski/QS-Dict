@@ -40,7 +40,7 @@
         ["(?!^)\\b((AH0)|(IH0)) Z(?=[ a-z]*$)", "zoo", "", "es$"],
         ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (S)(?=[ a-z]*$)", "$1 see", "", "s$"],
         ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (Z)(?=[ a-z]*$)", "$1 zoo", "", "s$"],
-        ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (AH0 L)(?=[ a-z]*$)", "$1 low"],
+        ["(B|CH|D|DH|F|G|JH|K|L|M|N|NG|P|R|S|SH|T|TH|V|Z|ZH) (AH0 L)(?=[ a-z]*$)", "$1 low", "", "(al|el|le|il)$"],
         ["(?!^)\\b(AH0 T IY0)(?=[ a-z]*$)", "it tea it"],
         ["(?!^)\\b(L AH0 N D)(?=[ a-z]*$)", "low no day"],
         ["(?!^)\\b(M AH0 N T)(?=[ a-z]*$)", "may no tea"],
