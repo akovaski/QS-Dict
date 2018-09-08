@@ -296,7 +296,7 @@ function getQSTranscripts(wordInput) {
     return [phenomes, manualTranscripts, qsTranscripts];
 }
 
-function transformPhenome(phenomeStr, word) {
+function transformPhenome(phenomeStr, word, usedTransforms) {
         // Transform the phenomes in order.
         for (let transform of phenomeReplace) {
             let wordConditionRe = transform[2];
@@ -306,6 +306,9 @@ function transformPhenome(phenomeStr, word) {
             let updatedStr = phenomeStr.replace(transform[0], transform[1]);
             if (wordConditionRe && phenomeStr !== updatedStr) {
                 word = word.replace(wordConditionRe, "");
+            }
+            if (usedTransforms && phenomeStr !== updatedStr) {
+                usedTransforms.push(transform);
             }
             phenomeStr = updatedStr;
         }
