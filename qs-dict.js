@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 const dictURL = "cmudict/cmudict.txt";
-const transformURL = "transformation.json?v=6";
+const transformURL = "transformation.json?v=7";
 const JSONtestTransformURL = "test/test-transform.json";
 
 let CMUdict = new Map();
@@ -245,6 +245,13 @@ function saveTransform(transJSON) {
         if (flag === "plain") {
             reStr = "\\b" + reStr + "\\b";
             flag = "g";
+        } else if (flag === "prefix") {
+            reStr = "^([ a-z]*)" + reStr + "(?= )";
+            flag = "";
+            substituteStr = "$1 " + substituteStr;
+        } else if (flag === "suffix") {
+            reStr = "(?!^)\\b" + reStr + "(?=[ a-z]*$)";
+            flag = "";
         }
 
         let re = new RegExp(reStr, flag);
