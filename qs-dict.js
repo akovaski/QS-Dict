@@ -96,6 +96,14 @@ function pageLoad() {
     transReq.open("GET",transformURL, true);
     transReq.responseType = "json";
     transReq.send();
+
+    let titleElem = document.getElementById("title");
+    let alternativeText = " "; // Quickscript Dictionary
+    titleElem.addEventListener("click", function() {
+        let curText = titleElem.innerText;
+        titleElem.innerText = alternativeText;
+        alternativeText = curText;
+    });
 }
 
 function retrieveDone(reqID) {
